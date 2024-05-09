@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // or "ES6" if you prefer
+    "module": "ESNext", // or "ES6" if you prefer
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "strict": true
+  },
+  "include": [
+    "./server.ts" // Update the path to match your project structure
+  ]
+}
