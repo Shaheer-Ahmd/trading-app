@@ -7,9 +7,6 @@ let uri = process.env.CONN_STR;
 
 
 export const connect = async () => {  
-  if (!uri) {
-    throw new Error("error fetching uri from .env");
-  }
   console.log("Connecting to the database");
   try {
     await mongoose.connect(uri);
