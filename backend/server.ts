@@ -1,11 +1,9 @@
 // server.ts
-import { config, configDotenv } from "dotenv";
 import http from "http";
 import { Server, Socket } from "socket.io";
 import { app } from "./app";
 import auth_controllers from "./controllers/auth";
 import { connect } from "./utils/db";
-configDotenv();
 
 const server: http.Server = http.createServer(app);
 export var io: Server = new Server(server, {
@@ -13,10 +11,6 @@ export var io: Server = new Server(server, {
     origin: "*",
     methods: ["GET", "POST"],
   },
-});
-
-config({
-  path: "./config.env",
 });
 
 var socketIds: Set<string> = new Set();
