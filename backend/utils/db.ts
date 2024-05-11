@@ -1,9 +1,10 @@
 
+import { configDotenv } from "dotenv";
 import mongoose from "mongoose";
-
+configDotenv();
 
 let uri = process.env.CONN_STR;
-
+console.log(process.env.TZ?.toString());
 
 export const connect = async () => {  
   console.log("Connecting to the database");
