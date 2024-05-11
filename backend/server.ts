@@ -1,11 +1,11 @@
 // server.ts
-import { Socket, Server } from "socket.io";
+import { config, configDotenv } from "dotenv";
 import http from "http";
+import { Server, Socket } from "socket.io";
 import { app } from "./app";
-import { config } from "dotenv";
-import { connect } from "./utils/db";
 import auth_controllers from "./controllers/auth";
-import { middleware } from "./utils/exception";
+import { connect } from "./utils/db";
+configDotenv();
 
 const server: http.Server = http.createServer(app);
 export var io: Server = new Server(server, {

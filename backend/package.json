@@ -8,7 +8,7 @@
     "dev": "nodemon server.ts",
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
     "build": "yarn",
-    "start": "node server.ts"
+    "start": "nodemon server.ts"
   },
   "type": "module",
   "author": "",

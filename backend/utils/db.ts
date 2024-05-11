@@ -1,7 +1,6 @@
-import { configDotenv } from "dotenv";
+
 import mongoose from "mongoose";
 
-configDotenv();
 
 let uri = process.env.CONN_STR;
 
