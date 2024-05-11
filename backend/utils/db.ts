@@ -1,15 +1,15 @@
-import 'dotenv';
-import { configDotenv } from "dotenv";
+import { configDotenv } from "dotenv/lib/main";
 import mongoose from "mongoose";
 
 configDotenv();
+
 let uri = process.env.CONN_STR;
 
 
 export const connect = async () => {  
   console.log("Connecting to the database");
   try {
-    await mongoose.connect(uri);
+    await mongoose.connect(uri || "");
     console.log("Connected to the database");
   } catch (e: any) {
     console.log(e.message);
