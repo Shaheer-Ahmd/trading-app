@@ -1,4 +1,4 @@
-import { configDotenv } from "dotenv/lib/main";
+import { configDotenv } from "dotenv";
 import mongoose from "mongoose";
 
 configDotenv();
