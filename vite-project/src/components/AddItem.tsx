@@ -51,7 +51,7 @@ export function AddItem() {
     // ✅ This will be type-safe and validated.
     console.log(values);
     axios
-      .post(import.meta.env.ROOT_URL + "addItem", {
+      .post("https://trading-app-a69n.onrender.com/" + "addItem", {
         userId: useUidStore.getState().uid,
         name: values.name,
         description: values.description,

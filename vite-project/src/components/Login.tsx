@@ -2,13 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -45,7 +45,7 @@ export function Login() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     axios
-      .get(import.meta.env.ROOT_URL + "validatePassword", {
+      .get("https://trading-app-a69n.onrender.com/" + "validatePassword", {
         params: {
           userName: values.username,
           password: values.password,
@@ -61,7 +61,7 @@ export function Login() {
         navigate("/home");
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         alert("Invalid username or password");
       });
   }

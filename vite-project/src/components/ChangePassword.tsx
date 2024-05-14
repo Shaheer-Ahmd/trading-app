@@ -46,7 +46,7 @@ export function ChangePassword() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     axios
-      .post(import.meta.env.ROOT_URL + "changePassword", {
+      .post("https://trading-app-a69n.onrender.com/" + "changePassword", {
         uid: useUidStore.getState().uid,
         oldPassword: values.oldPassword,
         newPassword: values.newPassword,

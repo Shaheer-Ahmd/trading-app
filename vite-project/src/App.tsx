@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
 import {
-  createBrowserRouter,
-  Link,
-  RouterProvider,
+    createBrowserRouter,
+    Link,
+    RouterProvider,
 } from "react-router-dom";
 import { io, Socket } from "socket.io-client";
 import "./App.css";
@@ -25,12 +25,12 @@ import { NavWrapper } from "./components/ui/nav-wrapper";
 import { Offer } from "./components/ui/offers-columns";
 import { Trade } from "./components/ui/trades-columns";
 import {
-  useAllItemsStore,
-  useAllTradesStore,
-  useCurrTradeStore,
-  useSocketStore,
-  useUidStore,
-  useUserTradesOffersStore,
+    useAllItemsStore,
+    useAllTradesStore,
+    useCurrTradeStore,
+    useSocketStore,
+    useUidStore,
+    useUserTradesOffersStore,
 } from "./store";
 
 
@@ -44,7 +44,7 @@ async function getAllItems() {
   //   }
   // }
   axios
-    .get(import.meta.env.ROOT_URL + "getAllItems", {
+    .get("https://trading-app-a69n.onrender.com/" + "getAllItems", {
       params: {
         userId: uid,
       },
@@ -65,7 +65,7 @@ async function getAllItems() {
 
 async function getAllTrades() {
   axios
-    .get(import.meta.env.ROOT_URL + "getAllTrades")
+    .get("https://trading-app-a69n.onrender.com/" + "getAllTrades")
     .then((response) => {
       console.log(response.data.data as Trade[]);
       const setAllTrades = useAllTradesStore.getState().setAllTradesTable;
@@ -143,7 +143,7 @@ async function getAllOffers() {
     return null;
   }
   axios
-    .get(import.meta.env.ROOT_URL + "getAllOffers", {
+    .get("https://trading-app-a69n.onrender.com/" + "getAllOffers", {
       params: {
         tradeId,
         creatorId,
@@ -177,7 +177,7 @@ async function getAllOffers() {
 async function getUserTradesOffers() {
   const uid = useUidStore.getState().uid;
   axios
-    .get(import.meta.env.ROOT_URL + "getInventory", {
+    .get("https://trading-app-a69n.onrender.com/" + "getInventory", {
       params: {
         userId: uid,
       },
@@ -267,7 +267,7 @@ function App() {
   // const revalidator = useRevalidator();
   // const navigate = useNavigate();
   useEffect(() => {
-    const socket: Socket = io(import.meta.env.ROOT_URL + "");
+    const socket: Socket = io("https://trading-app-a69n.onrender.com/" + "");
     const setSocket = useSocketStore.getState().setSocket;
     setSocket(socket);
 

@@ -1,13 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -49,7 +49,7 @@ export function Signup() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     axios
-      .post(import.meta.env.ROOT_URL + "createUser", {
+      .post("https://trading-app-a69n.onrender.com/" + "createUser", {
         userName: values.username,
         password: values.password,
         fullName: values.fullname,

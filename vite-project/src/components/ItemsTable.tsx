@@ -61,7 +61,7 @@ export function ItemsTable<TData, TValue>({
       .rows.map((row) => row.original._id);
     const uid = useUidStore.getState().uid;
     axios
-      .post(import.meta.env.ROOT_URL + "createTrade", {
+      .post("https://trading-app-a69n.onrender.com/" + "createTrade", {
         userId: uid,
         itemIds: itemIds,
         conditions: conditions,

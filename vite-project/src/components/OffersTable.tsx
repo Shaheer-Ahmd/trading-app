@@ -99,7 +99,7 @@ export function OffersTable<TData, TValue>({
       offererId: offererId,
     };
     axios
-      .post(import.meta.env.ROOT_URL + "rejectOffer", data)
+      .post("https://trading-app-a69n.onrender.com/" + "rejectOffer", data)
       .then((response) => {
         confetti();
         // actionRejectOffer();
