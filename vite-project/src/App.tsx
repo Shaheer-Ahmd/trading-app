@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
 import {
-    createBrowserRouter,
-    Link,
-    RouterProvider,
+  createBrowserRouter,
+  Link,
+  RouterProvider,
 } from "react-router-dom";
 import { io, Socket } from "socket.io-client";
 import "./App.css";
@@ -23,14 +23,16 @@ import { Button } from "./components/ui/button";
 import { Item } from "./components/ui/inventory-columns";
 import { NavWrapper } from "./components/ui/nav-wrapper";
 import { Offer } from "./components/ui/offers-columns";
+import * as profileOffers from "./components/ui/profile-offers-columns";
+import * as profileTrades from "./components/ui/profile-trades-columns";
 import { Trade } from "./components/ui/trades-columns";
 import {
-    useAllItemsStore,
-    useAllTradesStore,
-    useCurrTradeStore,
-    useSocketStore,
-    useUidStore,
-    useUserTradesOffersStore,
+  useAllItemsStore,
+  useAllTradesStore,
+  useCurrTradeStore,
+  useSocketStore,
+  useUidStore,
+  useUserTradesOffersStore,
 } from "./store";
 
 
@@ -100,6 +102,9 @@ async function getAllTrades() {
                     );
 
                     const socket = useSocketStore.getState().socket;
+                    if (!socket) {
+                      return;
+                    }
                     socket.emit("live-trading", dct._id);
                   }}
                 >
@@ -112,6 +117,9 @@ async function getAllTrades() {
                   onClick={() => {
                     setCurrTrade(dct._id, dct.userId);
                     const socket = useSocketStore.getState().socket;
+                    if (!socket) {
+                      return;
+                    }    
                     socket.emit("live-trading", dct._id);
                   }}
                 >
@@ -183,7 +191,7 @@ async function getUserTradesOffers() {
       },
     })
     .then((response) => {
-      let allTrades: Trade[] = [];
+      let allTrades: profileTrades.Trade[] = [];
       console.log(response);
 
       response.data.data.trades.forEach((dct: any) => {
@@ -196,7 +204,7 @@ async function getUserTradesOffers() {
         dct.offers = dct.offers.length;
         allTrades.push(dct);
       });
-      let allOffers: Offer[] = [];
+      let allOffers: profileOffers.Offer[] = [];
       response.data.data.offersGiven.forEach((dct: any) => {
         // dct.price = dct.items.reduce((acc: number, item: any) => acc + item.price, 0);
         dct.items = dct.items.map((item: any) => item.name).join(", ");

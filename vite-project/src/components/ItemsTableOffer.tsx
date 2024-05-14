@@ -40,7 +40,7 @@ export function ItemsTableOffer<TData, TValue>({
   const [rowSelection, setRowSelection] = useState({});
   const [cash, setCash] = useState(0);
   const userCash = useAllItemsStore.getState().cash;
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+  const [columnVisibility] = useState<VisibilityState>({
     select: true,
     _id: false,
     name: true,
@@ -63,7 +63,7 @@ export function ItemsTableOffer<TData, TValue>({
   const createOffer = async () => {
     const itemIds: string[] = table
       .getSelectedRowModel()
-      .rows.map((row) => row.original._id);
+      .rows.map((row:any) => row.original._id);
     const uid = useUidStore.getState().uid;
     const tradeId = useCurrTradeStore.getState().id;
     const socket = useSocketStore.getState().socket;

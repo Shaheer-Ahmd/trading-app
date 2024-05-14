@@ -1,19 +1,15 @@
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
+  navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
+
 import {
-  useAllItemsStore,
   useCurrTradeStore,
   useSocketStore,
-  useUidStore,
+  useUidStore
 } from "@/store";
 import { useEffect } from "react";
 
@@ -27,10 +23,13 @@ export function NavWrapper({ el }: { el: JSX.Element }) {
       navigate("/");
     }
     const socket = useSocketStore.getState().socket;
+    if (!socket) {
+      return;
+    }
     // useAllItemsStore.getState().setAllItems([]);
     // useCurrTradeStore.getState().setAllOffers([]);
     // useCurrTradeStore.getState().setId(null, null);
-    socket.on("offerAccepted", (data: any) => {
+    socket.on("offerAccepted", () => {
       if (!useCurrTradeStore.getState().id) {
         return;
       }

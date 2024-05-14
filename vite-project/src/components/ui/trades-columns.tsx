@@ -2,7 +2,6 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "./checkbox";
-import { Item } from "./inventory-columns";
 import { DataTableColumnHeader } from "./column-header";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -18,18 +17,6 @@ export type Trade = {
   conditions: string[];
 };
 
-enum OfferStatus {
-  PENDING = "PENDING",
-  ACCEPTED = "ACCEPTED",
-  REJECTED = "REJECTED",
-}
-
-interface Offer {
-  _id: string;
-  offererId: string;
-  items: Item[];
-  status: OfferStatus;
-}
 
 export const columns: ColumnDef<Trade>[] = [
   {

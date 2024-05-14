@@ -1,27 +1,26 @@
 "use client";
 import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    useReactTable,
-    VisibilityState,
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  useReactTable,
+  VisibilityState,
 } from "@tanstack/react-table";
 import confetti from "canvas-confetti";
 
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 
 import { useCurrTradeStore, useSocketStore, useUidStore } from "@/store";
 import axios from "axios";
 import { useState } from "react";
-import { useRevalidator } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Offer } from "./ui/offers-columns";
 
@@ -36,8 +35,7 @@ export function OffersTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const revalidate = useRevalidator();
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+  const [columnVisibility] = useState<VisibilityState>({
     selected: true,
     _id: false,
     offererId: false,
@@ -60,7 +58,7 @@ export function OffersTable<TData, TValue>({
   });
 
   const acceptOffer = async () => {
-    const selectedRows = table.getSelectedRowModel().rows;
+    const selectedRows:any = table.getSelectedRowModel().rows;
     if (selectedRows.length != 1) {
       alert("Please select one offer to accept");
       return;
@@ -78,11 +76,14 @@ export function OffersTable<TData, TValue>({
     };
     // console.log(data)
     const socket = useSocketStore.getState().socket;
+    if (!socket) {
+      return;
+    }
     socket.emit("acceptOffer", data);
     confetti();
   };
   const rejectOffer = async () => {
-    const selectedRows = table.getSelectedRowModel().rows;
+    const selectedRows:any = table.getSelectedRowModel().rows;
     if (selectedRows.length != 1) {
       alert("Please select one offer to accept");
       return;
@@ -100,7 +101,7 @@ export function OffersTable<TData, TValue>({
     };
     axios
       .post("https://trading-app-a69n.onrender.com/" + "rejectOffer", data)
-      .then((response) => {
+      .then(() => {
         confetti();
         // actionRejectOffer();
         // setTimeout(() => {

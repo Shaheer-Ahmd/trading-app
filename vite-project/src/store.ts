@@ -1,7 +1,11 @@
+import { Socket } from "socket.io-client";
 import { create } from "zustand";
 import { Item } from "./components/ui/inventory-columns";
 import { Offer } from "./components/ui/offers-columns";
+import * as profileOffers from "./components/ui/profile-offers-columns";
+import * as profileTrades from "./components/ui/profile-trades-columns";
 import { Trade } from "./components/ui/trades-columns";
+
 
 interface UidState {
   uid: string | null;
@@ -66,7 +70,7 @@ const useCurrTradeStore = create<CurrTradeState>((set) => ({
 }));
 
 interface SocketState {
-  socket: Socket;
+  socket: Socket | null;
   setSocket: (newSocket: Socket) => void;
 }
 
@@ -76,11 +80,11 @@ const useSocketStore = create<SocketState>((set) => ({
 }));
 
 interface UserTradesOffersState {
-  trades: Trade[];
-  offers: Offer[];
+  trades: profileTrades.Trade[];
+  offers: profileOffers.Offer[];
 
-  setTrades: (newTrades: Trade[]) => void;
-  setOffers: (newOffers: Offer[]) => void;
+  setTrades: (newTrades: profileTrades.Trade[]) => void;
+  setOffers: (newOffers: profileOffers.Offer[]) => void;
 }
 
 const useUserTradesOffersStore = create<UserTradesOffersState>((set) => ({

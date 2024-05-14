@@ -4,7 +4,7 @@ import {
   useUidStore
 } from "@/store";
 import { useEffect } from "react";
-import { useNavigate, useRevalidator } from "react-router-dom";
+import { useRevalidator } from "react-router-dom";
 import { OffersTable } from "./OffersTable";
 import { columns } from "./ui/offers-columns";
 
@@ -22,14 +22,13 @@ import { columns } from "./ui/offers-columns";
 //   }
 
 export function AllOffers() {
-  const navigate = useNavigate();
   const revalidator = useRevalidator();
   useEffect(() => {
     const socket = useSocketStore.getState().socket;
     if (!socket) {
       return;
     }
-    socket.on("offerCreated", (data: any) => {
+    socket.on("offerCreated", () => {
       const uid = useUidStore.getState().uid;
       const currTradeCreatorId = useCurrTradeStore.getState().creatorId;
       // console.log(data);

@@ -1,21 +1,21 @@
 "use client";
 
 import {
-    ColumnDef,
-    VisibilityState,
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    useReactTable,
+  ColumnDef,
+  VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
 
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 
 import { useUidStore } from "@/store";
@@ -35,7 +35,7 @@ export function ItemsTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [conditions, setConditions] = useState<string[]>([]);
   const [rowSelection, setRowSelection] = useState({});
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+  const [columnVisibility] = useState<VisibilityState>({
     select: true,
     _id: false,
     name: true,
@@ -58,7 +58,7 @@ export function ItemsTable<TData, TValue>({
   const createTrade = async () => {
     const itemIds: string[] = table
       .getSelectedRowModel()
-      .rows.map((row) => row.original._id);
+      .rows.map((row:any) => row.original._id);
     const uid = useUidStore.getState().uid;
     axios
       .post("https://trading-app-a69n.onrender.com/" + "createTrade", {
@@ -66,7 +66,7 @@ export function ItemsTable<TData, TValue>({
         itemIds: itemIds,
         conditions: conditions,
       })
-      .then((response) => {
+      .then(() => {
         confetti();
         setConditions([]);
       })

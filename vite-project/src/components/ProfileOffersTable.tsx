@@ -28,7 +28,7 @@ export function ProfileOffersTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+  const [columnVisibility] = useState<VisibilityState>({
     _id: false,
     offererId: false,
     items: true,

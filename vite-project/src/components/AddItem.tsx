@@ -2,12 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useUidStore } from "@/store";
@@ -57,9 +57,9 @@ export function AddItem() {
         description: values.description,
         price: parseInt(values.price),
       })
-      .then((response) => {
+      .then(() => {
         // confetti();
-        let timeout = setTimeout(() => {
+        setTimeout(() => {
           //   console.log(response);
           //   setAddItemPopup(false);
           navigate("/inventory");
