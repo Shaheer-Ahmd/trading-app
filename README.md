@@ -11,8 +11,7 @@
 - **Zustand** for state management on the frontend—simple and easy to use.
 - **Shadcn** for UI components—perfect for those who prefer not to deal with centering divs all the time.
 
-The application is deployed on render at the following link
-Please use anonymous tab to access this otherwise there are security certificate configuration errors (perks of socket supported free deployment).
+The application is deployed on render at the following link. Please use anonymous tab to access this otherwise there are security certificate configuration errors (perks of socket supported free deployment)
 - [Live Application](https://trading-app-fro.onrender.com)
 
 Video Demo:
